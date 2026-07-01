@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>根组件</h1>
-    <todoList :todolist="todolist"></todoList>
+    <todoInput @onsubmit="addTask"></todoInput>
+    <todoList :todolist="filteredTodolist"></todoList>
     <todoButton @changeActive="hangeFun"></todoButton>
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import todoList from "./components/todoList.vue";
 import todoButton from "./components/todoButton.vue";
+import todoInput from "./components/todoInput.vue";
 export default {
   name: "App",
   data() {
@@ -24,28 +26,34 @@ export default {
   },
 
   // 使用计算属性来实现当列表里的isCompleted改变的现实
-  computed:{
-    todolist(){
-      if(this.active === 0){
-        return this.todolist
+  computed: {
+    filteredTodolist() {
+      if (this.active === 0) {
+        return this.todolist;
+      } else if (this.active === 1) {
+        return this.todolist.filter((item) => item.isCompleted);
+      } else {
+        return this.todolist.filter((item) => !item.isCompleted);
       }
-      else if(this.active === 1){
-        return this.todolist.filter(item => item.isCompleted)
-      }
-      else{
-        return this.todolist.filter(item => !item.isCompleted)
-      }
-    }
+    },
   },
   methods: {
     hangeFun(index) {
       this.active = index;
       console.log(this.active);
     },
+    addTask(taskname) {
+      this.todolist.push({
+        id: this.todolist.length + 1,
+        task: taskname,
+        isCompleted: false,
+      });
+    },
   },
   components: {
     todoList,
     todoButton,
+    todoInput,
   },
 };
 </script>
