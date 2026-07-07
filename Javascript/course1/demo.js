@@ -7,4 +7,5 @@ function test() {
 function foo() {
   let secret = "我是秘密";
   console.log(secret);
+  console.log(secret);
 }
