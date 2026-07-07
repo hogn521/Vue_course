@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 普通函数严格模式下this指向undefined
+      const obj = {
+        sayHi: () => {
+          console.log("sayHI的箭头函数的this指向的是", this);
+        },
+        sayhello: function () {
+          console.log("SayHello的匿名函数指向的是", this);
+        },
+      };
+      //   obj.sayHi();
+      //   obj.sayhello();
+
+      //   apply
+
+      obj.sayHi.call(obj);
+    </script>
+  </body>
+</html>
