@@ -8,8 +8,6 @@
 //  一、any 类型 —— "别管我，跳过检查"
 // ============================================================
 
-
-
 // ============================================================
 //  四、综合练习思考题
 // ============================================================
@@ -42,44 +40,58 @@
 //  unknown  → "先查再用"     编译时就拦住你，更安全
 //  元组     → "套餐组合"     每个位置类型固定，长度固定
 
-
-
-enum Direction{
-    Up,
-    Down,
-    Left,
-    Right
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
 }
 console.log(Direction.Up);
 console.log(Direction[0]);
 
 // 手动指定起始值
-enum Status{
-    pending =1,
-    Done,
-    Failed
+enum Status {
+  pending = 1,
+  Done,
+  Failed,
 }
 
 // 字符串枚举
-enum Colors{
-    Red = "red",
-    Green = "green",
-    Blue= "blue"
+enum Colors {
+  Red = "red",
+  Green = "green",
+  Blue = "blue",
 }
 
 
 // 当函数参数调用
-function handleStatus(status:Status) :string{
-    switch(status){
-        case Status.pending:return "处理中"
-        case Status.Done:return "完成了"
-        case Status.Failed:return "失败了"
-    }
+function handleStatus(status: Status): string {
+  switch (status) {
+    case Status.pending:
+      return "处理中";
+    case Status.Done:
+      return "完成了";
+    case Status.Failed:
+      return "失败了";
+  }
 }
 
 console.log(handleStatus(Status.Done));
 
+let arr4: Array<number> = [3, 4, 5, 1, 2];
 
+// 元祖
+let tuple: [number, string, boolean] = [0, "1", true];
+tuple.push(16);
+console.log(tuple);
+// 枚举
+enum Role{
+    Repoter = 1,
+    Developer,
+    Maintainer,
+    Owner,
+    Guest
+}
+console.log(Role.Developer);
 
-
-export {}
+export {};

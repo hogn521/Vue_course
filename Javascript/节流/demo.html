@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        font-size: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script src="../node_modules/loadsh/lodash.min.js"></script>
+    <script>
+      var box = document.querySelector(".box");
+      let i = 0;
+      function mouseMove() {
+        box.innerHTML = i++;
+      }
+      //   box.addEventListener("mousemove", _.debounce(mouseMove, 500));
+    </script>
+  </body>
+</html>

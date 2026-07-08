@@ -44,6 +44,9 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
+# TypeScript compiled output
+Typescript/**/*.js
+
 # Temporary files
 *.tmp
 *.temp

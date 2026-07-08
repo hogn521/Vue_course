@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        font-size: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script src="../node_modules/loadsh/lodash.min.js"></script>
+    <script>
+      var box = document.querySelector(".box");
+      let i = 0;
+      function mouseMove() {
+        box.innerHTML = i++;
+      }
+      //   box.addEventListener("mousemove", _.debounce(mouseMove, 500));
+      //手搓实现防抖函数，核心利用settimeour
+      //   声明一个定时器变量
+      //   当鼠标滑动的时候都先判断是否有定时器，如果有定时器就先清除以前的定时器
+      //   如果没有则开启定时器，记录到变量里去
+      //   在定时器里执行函数
+      function debounce(fn, t) {
+        let timer;
+        return function () {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(function () {
+            fn();
+          }, t);
+        };
+      }
+      box.addEventListener("mousemove", debounce(mouseMove, 500));
+    </script>
+  </body>
+</html>
