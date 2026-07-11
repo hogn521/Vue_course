@@ -6,24 +6,21 @@
   >
     <button
       type="button"
-      class="btn"
-      :class="active === 0 ? 'btn-primary' : 'btn-secondary'"
+      class="btn btn-secondary"
       @click="changeActive(0)"
     >
       全部
     </button>
     <button
       type="button"
-      class="btn"
-      :class="active === 1 ? 'btn-primary' : 'btn-secondary'"
+      class="btn btn-secondary"
       @click="changeActive(1)"
     >
       已完成
     </button>
     <button
       type="button"
-      class="btn"
-      :class="active === 2 ? 'btn-primary' : 'btn-secondary'"
+      class="btn btn-secondary"
       @click="changeActive(2)"
     >
       未完成
@@ -34,16 +31,16 @@
 <script>
 export default {
   name: "todoButton",
-  data() {
-    return {
-      active: 0,
+  data(){
+    return{
+      active : 0,
     };
   },
-  emits: ["changeActive"],
-  methods: {
-    changeActive(num) {
+  emits:["changShuzu"],
+  methods:{
+    changeActive(num){
       this.active = num;
-      this.$emit("changeActive", this.active);
+      this.$emit("changShuzu",num)
     },
   },
 };
@@ -52,6 +49,8 @@ export default {
 <style scoped>
 .btn-group {
   width: 500px;
-  margin: 20px auto;
+}
+.btn-group button:hover {
+  background-color: orange;
 }
 </style>

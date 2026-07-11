@@ -1,21 +1,22 @@
 <template>
   <div>
-    <h1>根组件</h1>
-    <todoInput @onsubmit="addTask"></todoInput>
-    <todoList :todolist="filteredTodolist"></todoList>
-    <todoButton @changeActive="hangeFun"></todoButton>
+    <todoInput></todoInput>
+    <todoList :todoList="filterTodoList"></todoList>
+    <todoButton @changShuzu="hangFun"></todoButton>
   </div>
+  <choose_fav></choose_fav>
 </template>
 
 <script>
 import todoList from "./components/todoList.vue";
 import todoButton from "./components/todoButton.vue";
 import todoInput from "./components/todoInput.vue";
+import Revert_Str from "./components/Revert_Str.vue";
+import choose_fav from "./components/choose_fav.vue";
 export default {
-  name: "App",
   data() {
     return {
-      todolist: [
+      todoList: [
         { id: 1, task: "吃饭", isCompleted: true },
         { id: 2, task: "睡觉", isCompleted: false },
         { id: 3, task: "打游戏", isCompleted: true },
@@ -24,36 +25,28 @@ export default {
       active: 0,
     };
   },
-
-  // 使用计算属性来实现当列表里的isCompleted改变的现实
   computed: {
-    filteredTodolist() {
-      if (this.active === 0) {
-        return this.todolist;
-      } else if (this.active === 1) {
-        return this.todolist.filter((item) => item.isCompleted);
-      } else {
-        return this.todolist.filter((item) => !item.isCompleted);
-      }
+    filterTodoList() {
+      if (this.active === 0) return this.todoList;
+      else if (this.active === 1)
+        return this.todoList.filter((item) => item.isCompleted);
+      else
+        return this.todoList.filter(item => !item.isCompleted);
     },
   },
   methods: {
-    hangeFun(index) {
+    hangFun(index) {
       this.active = index;
-      console.log(this.active);
-    },
-    addTask(taskname) {
-      this.todolist.push({
-        id: this.todolist.length + 1,
-        task: taskname,
-        isCompleted: false,
-      });
     },
   },
   components: {
     todoList,
     todoButton,
     todoInput,
+    Revert_Str,
+    choose_fav
   },
 };
 </script>
+
+<style lang="scss" scoped></style>
